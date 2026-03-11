@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - "accelerate-with-copilot"
+      - "copilot/fix-offline-connection-issue"
     paths:
       - "src/app.py"
 
