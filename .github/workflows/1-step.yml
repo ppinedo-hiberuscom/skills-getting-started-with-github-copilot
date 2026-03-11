@@ -5,6 +5,12 @@ on:
     # Trigger on pushes to any branch except the protected `main` branch
     branches-ignore:
       - main
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual trigger'
+        required: false
+        default: 'Manual exercise completion'
 
 permissions:
   contents: read

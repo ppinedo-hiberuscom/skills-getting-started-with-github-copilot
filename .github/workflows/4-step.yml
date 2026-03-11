@@ -5,6 +5,12 @@ on:
     branches:
       - "accelerate-with-copilot"
       - "copilot/fix-offline-connection-issue"
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual trigger'
+        required: false
+        default: 'Manual exercise completion'
 
 permissions:
   contents: read

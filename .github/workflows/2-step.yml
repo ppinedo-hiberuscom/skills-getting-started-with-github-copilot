@@ -6,6 +6,12 @@ on:
       - "copilot/fix-offline-connection-issue"
     paths:
       - "src/app.py"
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual trigger'
+        required: false
+        default: 'Manual exercise completion'
 
 permissions:
   contents: read
