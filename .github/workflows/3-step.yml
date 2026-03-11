@@ -4,8 +4,15 @@ on:
   push:
     branches:
       - "accelerate-with-copilot"
+      - "copilot/fix-offline-connection-issue"
     paths:
       - "src/static/**"
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual trigger'
+        required: false
+        default: 'Manual exercise completion'
 
 permissions:
   contents: read

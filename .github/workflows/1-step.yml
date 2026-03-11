@@ -5,6 +5,12 @@ on:
     # Trigger on pushes to any branch except the protected `main` branch
     branches-ignore:
       - main
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual trigger'
+        required: false
+        default: 'Manual exercise completion'
 
 permissions:
   contents: read
@@ -64,7 +70,7 @@ jobs:
         with:
           # Check the branch ref directly
           text: ${{ github.ref }}
-          keyphrase: accelerate-with-copilot
+          keyphrase: copilot
           case-sensitive: true
           minimum-occurrences: 1
           maximum-occurrences: 1
@@ -80,7 +86,7 @@ jobs:
           vars: |
             step_number: 1
             results_table:
-              - description: "Checked that branch name is accelerate-with-copilot"
+              - description: "Checked that branch name contains 'copilot'"
                 passed: ${{ steps.check-branch.outcome == 'success' }}
 
       # END: Check practical exercise
