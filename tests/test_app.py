@@ -15,10 +15,11 @@ from app import app, activities
 @pytest.fixture(autouse=True)
 def reset_activities():
     """Reset activities to a clean state before each test."""
-    original = {
-        name: {**details, "participants": list(details["participants"])}
-        for name, details in activities.items()
-    }
+    original = {}
+    for name, details in activities.items():
+        copy = dict(details)
+        copy["participants"] = list(details["participants"])
+        original[name] = copy
     yield
     activities.clear()
     activities.update(original)

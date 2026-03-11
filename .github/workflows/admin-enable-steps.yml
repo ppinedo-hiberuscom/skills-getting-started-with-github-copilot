@@ -1,0 +1,58 @@
+name: Enable All Steps (Admin Utility)
+# This workflow can be run manually to enable all step workflows
+# Use this if the exercise workflows are stuck or disabled
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for enabling steps'
+        required: false
+        default: 'Reset exercise workflow state'
+
+permissions:
+  actions: write
+
+jobs:
+  enable_all_steps:
+    name: Enable All Step Workflows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enable Step 1
+        run: gh workflow enable "Step 1"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable Step 2
+        run: gh workflow enable "Step 2"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable Step 3
+        run: gh workflow enable "Step 3"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable Step 4
+        run: gh workflow enable "Step 4"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable Step 5
+        run: gh workflow enable "Step 5"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "## All step workflows enabled ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Steps 1-5 are now enabled. You can now:" >> $GITHUB_STEP_SUMMARY
+          echo "1. Approve any pending Step 1 workflow run, OR run Step 1 manually via workflow_dispatch" >> $GITHUB_STEP_SUMMARY
+          echo "2. After Step 1 passes, run Step 2 manually (workflow_dispatch)" >> $GITHUB_STEP_SUMMARY
+          echo "3. After Step 2 passes, run Step 3 manually (workflow_dispatch)" >> $GITHUB_STEP_SUMMARY
+          echo "4. After Step 3 passes, run Step 4 manually (workflow_dispatch)" >> $GITHUB_STEP_SUMMARY
+          echo "5. Merge the pull request to complete Step 5" >> $GITHUB_STEP_SUMMARY
